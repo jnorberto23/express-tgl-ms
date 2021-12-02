@@ -1,5 +1,5 @@
 import { Kafka, Consumer as KafkaConsumer } from "kafkajs";
-
+import sendMail from "../Nodemailer/mailer";
 
 interface IConsume {
   topic: string;
@@ -9,9 +9,9 @@ interface IConsume {
 export default class Consumer {
   private consumer: KafkaConsumer;
 
-  constructor( groupId : string) {
+  constructor(groupId: string) {
     const kafka = new Kafka({
-      clientId: 'example-consumer',
+      clientId: "example-consumer",
       brokers: ["kafka:29092"],
     });
 
@@ -25,8 +25,9 @@ export default class Consumer {
     console.log(`Consuming topic ${topic}`);
     await this.consumer.run({
       eachMessage: async ({ topic, partition, message }) => {
-        console.log({
-          value: message.value?.toString(),
+      sendMail.send({
+          template: topic.toString(),
+          message: message.value?.toString(),
         });
       },
     });
