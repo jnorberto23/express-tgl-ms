@@ -1,0 +1,45 @@
+<style>
+    * {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: rgb(51, 51, 51);
+        background-color: rgb(250, 250, 250);
+    }
+
+    p {
+        text-align: left
+    }
+
+    ul {
+        margin-left: 10px;
+        padding-left: 10px;
+        border-left: 2px solid rgb(74, 189, 84);
+    }
+
+    li {
+        margin: auto;
+        list-style-type: none
+    }
+
+    span {
+        color: red;
+        font-weight: bold;
+    }
+
+    strong{
+        color: greenyellow;
+        font-weight: bold;
+        font-size: 18pt;
+    }
+</style>
+
+<p>Olá {{ user.first_name }}, tudo belê?</p>
+<p>Seguinte, só tamo passando aqui pra mostrar as suas novas apostas, da uma olhadinha: </p>
+<ul>
+    {{#each message.bets}}
+    <li> {{ this.type}} | {{ this.numbers }} | R$ {{ this.price }} </li>
+    {{/each}}
+</ul>
+<p>E tudo isso saiu por <span>R$ {{ message.cartPrice }}</span></p>
+<p>É isso, qualquer coisa é só chamar a gente, ok?</p>
+<p>Abraços a distancia.</p>
+<strong>TGL</strong>
