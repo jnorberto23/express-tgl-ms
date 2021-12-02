@@ -31,15 +31,14 @@
         font-size: 18pt;
     }
 </style>
-
 <p>Olá {{ user.first_name }}, tudo belê?</p>
-<p>Seguinte, só tamo passando aqui pra mostrar as suas novas apostas, da uma olhadinha: </p>
+<p>Seguinte, só tamo passando aqui pra mostrar as apostas do usuario {{ message.user.username }} | {{ message.user.email }}, da uma olhadinha: </p>
 <ul>
     {{#each message.bets}}
     <li> {{ this.type}} | {{ this.numbers }} | R$ {{ this.price }} </li>
     {{/each}}
 </ul>
-<p>E tudo isso saiu por <span>R$ {{ message.cartPrice }}</span></p>
-<p>É isso, qualquer coisa é só chamar a gente, ok?</p>
+<p>E o valor total do carrinho foi de <span>R$ {{ message.cartPrice }}</span></p>
+<p>Por enquanto é só isso, obrigado.</p>
 <p>Abraços a distancia.</p>
 <strong>TGL</strong>

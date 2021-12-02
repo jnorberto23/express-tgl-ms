@@ -35,23 +35,23 @@ class sendMail {
   }
 
   async send(params: any) {
-    const { email, subject, message } = JSON.parse(params.message);
+    const { user, subject, message } = JSON.parse(params.message);
     const template = params.template;
 
     this.transporter.use("compile", hbs(this.hbsConfig));
 
     const mailer = {
       from: "contato@tgl.com",
-      to: email.toString(),
+      to: user.email,
       subject: subject.toString(),
       template: template.toString(),
-      context: { message },
+      context: { message: message, user: user },
     };
-
+ 
     await this.transporter
       .sendMail(mailer)
       .then(() => {
-        console.log(`Mensagem enviada para ${email}`);
+        console.log(`Mensagem enviada para ${user.email}`);
       })
       .catch((error) => {
         console.log("Erro ao enviar a mensagem: ", error);
